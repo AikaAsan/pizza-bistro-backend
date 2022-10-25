@@ -17,10 +17,7 @@ app.use(express.json());
 app.use(cors());
 
 mongoose
-    .connect(uri, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    })
+    .connect(uri)
     .then(() => console.log('successfully connected to database'))
     .catch((err) =>
         console.log('something went wrong during connecting to database', err)

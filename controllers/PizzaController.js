@@ -3,8 +3,10 @@ import Pizza from '../models/Pizza.js';
 export const getPizzas = async (req, res) => {
     try {
         const { sortBy, category, page, search } = req.query;
+
         const dbSortBy = { [sortBy]: 'asc' } || { title: 'asc' };
         const dbCategory = category ? { category: category } : {};
+
         const dbSearch = search
             ? {
                   title: { $regex: new RegExp(search), $options: 'i' },
