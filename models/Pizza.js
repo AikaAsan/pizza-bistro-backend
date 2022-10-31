@@ -6,7 +6,7 @@ const PizzaSchema = new mongoose.Schema({
     title: String,
     types: Array,
     sizes: Array,
-    price: Number,
+    price: Object,
     category: Number,
     rating: Number,
 });
