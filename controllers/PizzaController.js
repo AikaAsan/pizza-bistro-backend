@@ -17,14 +17,17 @@ export const getPizzas = async (req, res) => {
         const skipPage = dbPage * itemsPerPage;
 
         // const totalPages = Math.ceil((await Pizza.count()) / 4);
-        // const totalItems = await Pizza.count();
+        const totalItems = await Pizza.find({
+            ...dbCategory,
+            ...dbSearch,
+        }).count();
 
         const pizzas = await Pizza.find({ ...dbCategory, ...dbSearch })
             .sort(dbSortBy)
             .skip(skipPage)
             .limit(itemsPerPage);
 
-        res.status(200).json(pizzas);
+        res.status(200).json({ pizzas, totalItems });
     } catch (err) {
         console.log(err);
         res.status(500).json({
